@@ -1,0 +1,297 @@
+{% extends 'sidebar.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href='{%static "css\bootstrap.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{%static "css\aos.css" %}'>
+
+	<link rel="stylesheet" type="text/css" href='{%static "icofont\icofont.min.css" %}'>
+	<script src='{%static "js/bootstrap.bundle.min.js" %}'></script>
+	<style type="text/css">
+		#video-background {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    min-width: 100%;
+		    min-height: 100%;
+		    width: auto;
+		    height: auto;
+		    z-index: -1;
+		    overflow: hidden;
+		}
+
+		.con_btn:hover{
+		transform: translateY(-3px);
+	    transition: all ease 0.3s;
+	    color:black;
+	}
+
+	   select.form-select{
+	   	appearance:auto;
+	   	-webkit-appearance:auto;
+	   	-moz-appearance:auto;
+	   }
+
+	   .content {
+			position: relative;/* Ensure content appears on top of video */
+		    z-index: 1;/* Ensure content appears on top of video */
+		    /* Style your content here */
+		}   
+
+		form:hover a{
+			color: black!important;
+		}
+
+		body{
+			overflow-x: hidden;
+		}
+
+	</style>
+</head>
+<body style="background-color:#081108;color: white;">
+	 <video autoplay muted loop id="video-background">
+        <source src="{%static 'Photos/back_vid.mp4' %}" type="video/mp4">
+     </video>
+
+
+	<div class="row">
+    	<div class="col-md-3 ms-2"></div>
+    	<div class="col-md-8 mt-3">
+			<form method="POST" action="" class="p-5 border" style="color:#00d094; background-color:rgba(8, 17, 8, 0.5); border-radius: 25px; border-color:#00d094 !important;">
+				{% csrf_token %}
+				<center><h2 data-aos="fade-down">GET THE LIVE RATES OF A PARTICULAR RANGE OF YEARS</h2></center>
+				<hr style="color: #bbc2c7;">
+				<div class="row mt-3">
+					<div class="col-md-12" data-aos="fade-up">
+						<select name="stock" id="stockDropdown"  class="form-select form-select-lg mb-3 mt-4" aria-label="Large select example" style="background-color: #253a33; color:#bbc2c7; box-shadow: none; border:none;">
+							<option selected>Select the Stock</option>
+						    <option value="HDFCBANK">HDFC Bank</option>
+							<option value="ICICIBANK">ICICI Bank</option>
+						    <option value="TATAMOTORS">Tata Motors</option>
+							<option value="BAJFINANCE">Bajaj Finance</option>
+							<option value="SUNPHARMA">Sun Pharma</option>
+							<option value="RELIANCE">Reliance</option>
+							<option value="INFY">Infosys</option>
+							<option value="TCS">TCS</option>
+							<option value="ITC">ITC</option>
+							<option value="SBIN">SBI</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6" data-aos="fade-right">
+						<select name="start" id="yearDropdown1"  class="form-select form-select-lg mb-3" aria-label="Large select example" style="background-color: #253a33; color:#bbc2c7; box-shadow: none; border:none;" required >
+							<option selected>Select the Start Year</option>
+						</select>
+						<script>
+				 			// Get the dropdown element
+						    var yearDropdown1 = document.getElementById("yearDropdown1");
+						    var stockDropdown = document.getElementById("stockDropdown");
+
+							  // Get current year
+							function updateYearDropdown() {
+								var year = 1996; // Default start year
+					        // Clear existing options
+					        yearDropdown1.innerHTML = "";
+
+					        var endDefaultOption = document.createElement("option");
+					        endDefaultOption.text = "Select the Start Year";
+					        endDefaultOption.disabled = true;
+					        endDefaultOption.selected = true;
+					        yearDropdown1.add(endDefaultOption);
+
+					      
+
+
+					       
+					        // Update start year based on the selected stock
+					        if (stockDropdown.value == "TATAMOTORS") {
+					            year = 1991;
+					        } else if (stockDropdown.value === "BAJFINANCE" || stockDropdown.value === "ICICIBANK" || stockDropdown.value === "TCS" ) {
+					            year = 2002;
+					        } else {
+					            year = 1996;
+					        }
+
+					        // Populate year options
+					        for (var year = year; year <= 2023; year++) {
+					            var option = document.createElement("option");
+					            option.text = year;
+					            option.value = year;
+					            yearDropdown1.add(option.cloneNode(true));
+					        }
+					    }
+
+					    // Event listener for stock dropdown change
+						    stockDropdown.addEventListener("change", updateYearDropdown);
+
+						    // Initial population of year dropdowns
+						    updateYearDropdown();
+					</script>
+					</div>
+
+					<div class="col-md-6" data-aos="fade-left">
+						<select name="end" id="yearDropdown2"  class="form-select form-select-lg mb-3" aria-label="Large select example" style="background-color: #253a33; color:#bbc2c7; box-shadow: none; border:none;" required >
+							<option selected>Select the End Year</option>
+						</select>
+					</div>
+							<script>
+					    // Get the dropdown elements
+					    var yearDropdown1 = document.getElementById("yearDropdown1");
+					    var yearDropdown2 = document.getElementById("yearDropdown2");
+
+					    // Get current year
+					    var currentYear = new Date().getFullYear();
+
+					    // Loop through years from 1996 to currentYear and add them as options
+					    for (var year = 1996; year <= currentYear; year++) {
+					        var option1 = document.createElement("option");
+					        var option2 = document.createElement("option");
+					        option1.text = year;
+					        option1.value = year;
+					        option2.text = year;
+					        option2.value = year;
+					        yearDropdown1.add(option1);
+					        yearDropdown2.add(option2);
+					    }
+
+					    // Function to set default option for end year dropdown
+					    function setDefaultEndYearOption() {
+					        yearDropdown2.innerHTML = '';
+					        var defaultOption = document.createElement("option");
+					        defaultOption.text = "Select the End Year";
+					        defaultOption.disabled = true;
+					        defaultOption.selected = true;
+					        yearDropdown2.add(defaultOption);
+
+
+
+					    }
+
+
+					    // Call the function initially to set default option for end year dropdown
+					    setDefaultEndYearOption();
+
+					    // Add event listener to yearDropdown1
+					    yearDropdown1.addEventListener("change", function () {
+					        // Clear existing options in yearDropdown2
+					        setDefaultEndYearOption();
+
+					        // Get selected start year
+					        var startYear = parseInt(yearDropdown1.value);
+
+					        // Add options to yearDropdown2 starting from startYear + 1
+					        for (var year = startYear + 1; year <= currentYear; year++) {
+					            var option = document.createElement("option");
+					            option.text = year;
+					            option.value = year;
+					            yearDropdown2.add(option);
+					        }
+
+					    });
+					</script>
+				</div>
+			{% if msg %}
+			<center>
+			<h5 style="color: red;" data-aos="fade-up">* {{msg}} </h5>
+			</center>
+			{% endif %}
+			<button class="form-control  mt-3   pt-3 pb-3 ps-4 pe-4 border border-secondary shadow-none con_btn"
+			style="background-color: #00d094; border-radius: 8px; font-weight:bold; " data-aos="fade-up" type="submit">Get the rates</button>		
+			</form>
+
+			{% if p %}
+			<div class="mt-4">
+          		<h4 data-aos="fade-down"><center>  {{p}} </center>  </h4>
+      		</div>
+          	<div class="scrollable-div" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; " data-aos="fade-up">
+	       		<table class="table table-dark table-striped"> 
+	    			<thead style="position: sticky; top: 0; background-color: #343a40 !important;"> 
+		      		<tr> 
+				        <th>Date</th> 
+				        <th>Open</th> 
+				        <th>High</th> 
+				        <th>Low</th> 
+				        <th>Close</th> 
+				        <th>Volume</th> 
+				    </tr> 
+	   				</thead> 
+	    			<tbody> 
+					    <!-- jinja2 Technique -->
+					    {% if d %}   
+					    {% for i in d %} 
+					      <tr> 
+					        <td>{{i.Date }}</td> 
+					        <td>{{i.Open}}</td> 
+					        <td>{{i.High}}</td> 
+					        <td>{{i.Low}}</td> 
+					        <td>{{i.Close}}</td> 
+					        <td>{{i.Volume}}</td> 
+					      </tr> 
+					    {% endfor %} 
+					    {% endif %} 
+				    </tbody> 
+	  			</table>
+			</div>
+			<form>
+				<a href="{% static "" %}{{p}}"  class="border form-control border-secondary shadow-none mt-2 mb-5" 
+				style="text-align: center; text-decoration: none; background-color: #00d094; font-weight: bold;">Download</a> 
+			</form>
+			{% endif %}
+			{% if msg %}
+			<script type="text/javascript">
+				alert(msg)
+			</script>
+			{% endif %}
+     
+		</div>
+
+  <script src='{%static "js\aos.js" %}'></script>
+    <script>
+      AOS.init()
+    </script>
+
+</div>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+<!--
+	from django.http import HttpResponse
+from django.template import loader
+from django.conf import settings
+import os
+
+def serve_csv_file(request):
+    # Path to your CSV file within the static directory
+    csv_file_path = os.path.join(settings.STATIC_ROOT, 'path', 'to', 'your', 'csv', 'file.csv')
+   
+    # Read the CSV file
+    with open(csv_file_path, 'r') as file:
+        csv_data = file.read()
+   
+    # Return CSV data as HTTP response
+    response = HttpResponse(csv_data, content_type='text/csv')
+    response['Content-Disposition'] = 'inline; filename=file.csv'
+    return response
+-->
+
+
+
+<!--
+<div style=" ">
+{% if k %}
+ {{k | safe}}
+{% endif %}
+</div>
+<iframe id="encoder_iframe" height=75% width="50%" src="{%static 'statics/SBIN.NS.csv' %}">
+</iframe>
+-->
+
+

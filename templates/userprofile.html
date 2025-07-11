@@ -1,0 +1,222 @@
+{% extends 'sidebar.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href='{%static "css\bootstrap.min.css" %}'>
+  <link rel="stylesheet" type="text/css" href='{%static "icofont\icofont.min.css" %}'>
+  <link rel="stylesheet" type="text/css" href='{%static "css\aos.css" %}'>
+  <script src='{%static "js/bootstrap.bundle.min.js" %}'></script>
+  <style type="text/css">
+    input{
+    color: white !important;
+  }
+    input:hover{
+    border-color: #00d094 !important;
+  }
+ textarea:hover{
+    border-color: #00d094 !important;
+  }
+    .in{
+      color:#bbc2c7 !important;
+    }
+
+    .con_btn:hover{
+    transform: translateY(-3px);
+    transition: all ease 0.3s;
+    color:black !important;
+  }
+
+  .profile_btn{
+    color: #bbc2c7 !important; 
+  }
+
+  .profile_btn:hover{
+    color: white !important; 
+  }
+
+  .animated-text{
+      position: relative;
+      -webkit-box-reflect:below -10px linear-gradient(transparent, rgba(0,0,0,.2));
+      font-size: 60px;
+    }
+    .animated-text span{
+      font-family: 'Alfa Slab One', cursive;
+      position: relative;
+      display: inline-block;
+      color: white ;
+      text-transform: uppercase;
+      animation: animated-text 1s infinite;
+      animation-delay: calc(.1s * var(--i));
+
+    }
+
+    @keyframes animated-text{
+      0%, 40%, 100%{
+        transform: translateY(0);
+      }
+      20%{
+        transform: translateY(-20px);
+      }
+    }
+
+  </style>
+</head>
+<body style="background-color:#081108; color: white;">
+<div class="container container-fluid">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-8 mb-3">
+    <div class="row" style="margin-left: 50px;">
+      <div class="col-md-12 mt-5">
+        <div style="margin-left: -150px;">
+        <h1>
+        <div class="animated-text" data-aos="fade-down" style="font-family: 'poppins',sans-serif; color: white; font-weight: bold; font-size: 80px; "><strong>
+        <span style="--i:1">M</span>
+        <span style="--i:2">Y</span>&nbsp;&nbsp;
+        <span style="--i:3">P</span>
+        <span style="--i:4">R</span>
+        <span style="--i:5">O</span>
+        <span style="--i:6">F</span>
+        <span style="--i:7">I</span>
+        <span style="--i:8">L</span>
+        <span style="--i:9">E</span></strong></div>
+        
+        <div style="margin-left: 800px; margin-top: -100px" data-aos="fade-down">
+        {% if user.image %}
+        <img class="border rounded-circle" src="{{user.image.url}}" height="150px" width="150px" style="border-radius: 25px;">
+        {% else %}
+        <img class="border rounded-circle" src="{% static 'Photos/profile.webp' %}" height="150px" width="150px" style="border-radius: 25px;">
+        {% endif %}
+        </div>
+        </div>
+        </h1>
+      
+        <hr style="width: 1090px; margin-left: -210px; margin-top: 70px;">
+      </div>
+    </div>
+    <div class="row" style="margin-left: 50px;">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" style="margin-top: -10px;">
+        
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'editprofile' %}" class="shadow-none" style="text-decoration: none; color: white;">
+        <span style=" margin-left: 350px !important; margin-top: -50px !important;"><i class="icofont-pencil-alt-5 p-2 me-2 icon"></i></span></a>
+      </div>
+    </div>
+
+    <div style="margin-left: 40px;" data-aos="fade-up">
+    <div class="row">
+      <div class="col-md-6">
+        <label><h5>First Name</h5></label>
+        <input type="text" name="first_name" value="{{user.first_name}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+      <div class="col-md-6">
+        <label><h5>Last Name</h5></label>
+        <input type="text" name="last_name" value="{{user.last_name}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label><h5>Email Id</h5></label>
+        <input type="text" name="email" value="{{user.email}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+      <div class="col-md-6">
+        <label><h5>Age</h5></label>
+        <input type="text" name="age" value="{{user.age}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label><h5>Birthday</h5></label>
+        <input type="Date" name="birthday" value="{{user.birthday}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>   
+      </div>
+      <div class="col-md-6">
+        <label><h5>Gender</h5></label>
+        <div class="row">
+          <div class="col-md-6 mt-2">
+            <div class="form-check txt form-control border shadow-none border-secondary p-2" style="background-color: #253a33;">
+              <input class="form-check-input border-secondary ms-1 shadow-none" type="radio" value="{{user.gender}}" name="gender" id="flexRadioDefault1" style="background-color: #253a33;" {% if user.gender == 'male' %}checked{% endif %}>
+              <label class="form-check-label ps-1" for="flexRadioDefault1" style="color:#bbc2c7">Male</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="form-check txt form-control border border-secondary shadow-none p-2" style="background-color: #253a33;">
+              <input class="form-check-input border-secondary ms-1 shadow-none" type="radio" value="{{user.gender}}" name="gender" id="flexRadioDefault2"style="background-color: #253a33;" {% if user.gender == 'female' %}checked{% endif %}>
+              <label class="form-check-label ps-1" for="flexRadioDefault2" style="color:#bbc2c7;">Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label><h5>Contact</h5></label>
+        <input type="text" name="contact" value="{{user.contact}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+      <div class="col-md-6">
+        <label><h5>Pincode</h5></label>
+        <input type="text" name="pincode" value="{{user.pincode}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <label><h5>Address</h5></label>
+        <textarea name="address" value="{{user.address}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label><h5>Country</h5></label>
+        <input type="text" name="country" value="{{user.country}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+      <div class="col-md-6">
+        <label><h5>State</h5></label>
+        <input type="text" name="state" value="{{user.state}}" class="in form-control border border-secondary pt-3 pb-3 ps-4 pe-4 shadow-none" style="background-color: #253a33;border-radius: 8px;" readonly>
+      </div>
+    </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+<script src='{%static "js\aos.js" %}'></script>
+    <script>
+      AOS.init()
+    </script>   
+
+
+
+<script>
+    // Disable unselected radio button
+    window.onload = function() {
+        var radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(function(radioButton) {
+            if (!radioButton.checked) {
+                radioButton.disabled = true;
+            }
+        });
+    };
+</script>
+
+
+
+
+
+
+{% endblock %}
+</body>
+</html>
+
+

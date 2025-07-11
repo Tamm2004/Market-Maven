@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title></title>
+	
+	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+body {
+    background-color: #081108
+}
+
+.btn1 {
+    position: absolute;
+    top: 10px;
+    left: 45px;
+    height: 37px;
+    width: 37px;
+    text-align: center;
+    background: #333;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: left 0.4s ease
+}
+
+.btn1.click {
+    left: 260px
+}
+
+.btn1 span {
+    color: white;
+    font-size: 15px;
+    line-height: 36px
+}
+
+.btn1.click span:before {
+    content: '\f00d'
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    left: -250px;
+    background: #081108 !important;
+    transition: left 0.4s ease
+}
+
+.sidebar.show {
+    left: 0px
+}
+.sidebar .text {
+    color: white;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 65px;
+    text-align: center;
+    background: #00150f;
+    letter-spacing: 1px
+}
+
+nav ul {
+    background: #00150f;
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    padding-left: 10px
+}
+
+nav ul li {
+    line-height: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1)
+}
+
+nav ul li:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+}
+
+nav ul li a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    padding-left: 14px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    border-left: 3px solid transparent
+}
+
+nav ul li.active a {
+    color:  #00d094 ;
+    background: #1e1e1e;
+    border-left-color: #00d094 
+}
+
+
+nav ul li a:hover {
+    background: #1e1e1e
+}
+
+.feat-show {
+    transition: all 0.5s
+}
+
+nav ul li.active ul {
+    transition: all 0.5s
+}
+
+nav ul ul {
+    position: static;
+    display: none
+}
+
+nav ul.show {
+    display: block;
+    transition: all 0.5s
+}
+
+nav ul ul li {
+    line-height: 42px;
+    border-top: none
+}
+
+nav ul ul li a {
+    font-size: 12px;
+    color:#e6e6e6;
+}
+
+nav ul li.active ul li a {
+    color: #e6e6e6;
+    background: #333;
+    border-left-color: transparent
+}
+
+a:hover {
+    color: #00d094  !important
+}
+
+nav ul ul li a:hover {
+    color: #00d094  !important;
+    background: #1e1e1e !important
+}
+
+nav ul li a span {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 15px;
+    transition: transform 0.4s
+}
+
+nav ul li a span.rotate {
+    transform: translateY(-50%) rotate(-180deg)
+}
+nav ul li ul li.active a{
+    color:  #00d094 ;
+    background: #1e1e1e;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #202020;
+    z-index: -1;
+    text-align: center
+}
+	</style>
+</head>
+<body>
+	
+<nav class="sidebar show" style="overflow: scroll; background-color:#00150f !important;" >
+    <div class="text" style="background-color:  #081108 !important;"><a href="{% url 'index' %}" style="text-decoration: none;"><img src='{%static "Photos\logo1.png" %}' height="50px" width="100px" class="mb-3" style="margin-top: 20px !important;"></a></div>
+    <ul class="main_side">
+        <li class="{% if request.path == '/dashboard' %}active{% endif %}"><a href="{% url 'dashboard' %}"><i class="icofont-dashboard">&nbsp;Dashboard</i></a></li>
+        <li><a href="{% url 'index' %}"><i class="icofont-home">&nbsp;Home Page</i></a></li>
+        
+        <li class="{% if request.path == '/userprofile' or request.path == '/editprofile' or request.path == '/changepass' %}active{% endif %}"> <a href="#" id="1"><i class="icofont-user-alt-3">&nbsp;My Account </i><span class="fas fa-caret-down"></span> </a>
+            <ul class="item-show-1 {% if request.path == '/userprofile' or request.path == '/editprofile' or request.path == '/changepass' %}show{% endif %}">
+                <li {% if request.path == '/userprofile' %} class="active" {% endif %}><a href="{% url 'userprofile' %}">My Profile</a></li>
+                <li {% if request.path == '/editprofile' %} class="active" {% endif %}><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+                <li {% if request.path == '/changepass' %} class="active" {% endif %}><a href="{% url 'changepass' %}">Change Password</a></li>
+
+            </ul>
+        </li>
+        <li class="{% if request.path == '/reliance' or request.path == '/bajaj' or request.path == '/tata' or request.path == '/sun' or request.path == '/hdfc' or request.path == '/icici' or request.path == '/sbi' or request.path == '/infy' or request.path == '/itc' or request.path == '/tcs' %}active{% endif %}"><a href="#" id="3"><i class="icofont-chart-histogram">&nbsp;Stocks</i><span class="fas fa-caret-down"></span></a>
+            <ul class="item-show-3 {% if request.path == '/reliance' or request.path == '/bajaj' or request.path == '/tata' or request.path == '/sun' or request.path == '/hdfc' or request.path == '/icici' or request.path == '/sbi' or request.path == '/infy' or request.path == '/itc' or request.path == '/tcs' %}show{% endif %}">
+                <li {% if request.path == '/reliance' %} class="active" {% endif %}><a href="{% url 'reliance' %}">Reliance</a></li>
+                <li {% if request.path == '/bajaj' %} class="active" {% endif %}><a href="{% url 'bajaj' %}">Bajaj Finance</a></li>
+                <li {% if request.path == '/tata' %} class="active" {% endif %}><a href="{% url 'tata' %}">Tata Motors</a></li>
+                <li {% if request.path == '/sun' %} class="active" {% endif %}><a href="{% url 'sun' %}">Sun Pharma</a></li>
+                <li {% if request.path == '/hdfc' %} class="active" {% endif %}><a href="{% url 'hdfc' %}">HDFC Bank</a></li>
+                <li {% if request.path == '/icici' %} class="active" {% endif %}><a href="{% url 'icici' %}">ICICI Bank</a></li>
+                <li {% if request.path == '/sbi' %} class="active" {% endif %}><a href="{% url 'sbi' %}">SBI Bank</a></li>
+                <li {% if request.path == '/infy' %} class="active" {% endif %}><a href="{% url 'infy' %}">Infosys</a></li>
+                <li {% if request.path == '/itc' %} class="active" {% endif %}><a href="{% url 'itc' %}">ITC</a></li>
+                <li {% if request.path == '/tcs' %} class="active" {% endif %}><a href="{% url 'tcs' %}">TCS</a></li>
+
+
+
+            </ul>
+        </li>
+        
+        <li class="{% if request.path == '/ques' or request.path == '/ques_2' or request.path == '/ques_3' or request.path == '/ques_candle' or request.path == '/allyears' or request.path == '/year' or request.path == '/month' or request.path == '/range' or request.path == '/comp_2' or request.path == '/compyear_2' or request.path == '/compmonth_2' or request.path == '/comprange_2' or request.path == '/comp_3' or request.path == '/compyear_3' or request.path == '/compmonth_3' or request.path == '/comprange_3' or request.path == '/candle' or request.path == '/candle_year' %}active{% endif %}"> <a href="#" id="2"><i class="icofont-chart-line">&nbsp;Price Analysis</i><span class="fas fa-caret-down"></span> </a>
+            <ul class="item-show-2 {% if request.path == '/ques' or request.path == '/ques_2' or request.path == '/ques_3' or request.path == '/ques_candle' or request.path == '/allyears' or request.path == '/year' or request.path == '/month' or request.path == '/range' or request.path == '/comp_2' or request.path == '/compyear_2' or request.path == '/compmonth_2' or request.path == '/comprange_2' or request.path == '/comp_3' or request.path == '/compyear_3' or request.path == '/compmonth_3' or request.path == '/comprange_3' or request.path == '/candle' or request.path == '/candle_year' %}show{% endif %}">
+                <li {% if request.path == '/ques' or request.path == '/allyears' or request.path == '/year' or request.path == '/month' or request.path == '/range' %} class="active" {% endif %}><a href="{% url 'ques' %}">One Stock</a></li>
+                <li {% if request.path == '/ques_2' or request.path == '/comp_2' or request.path == '/compyear_2' or request.path == '/compmonth_2' or request.path == '/comprange_2' %} class="active" {% endif %}><a href="{% url 'ques_2' %}">Two Stocks</a></li>
+                <li {% if request.path == '/ques_3' or request.path == '/comp_3' or request.path == '/compyear_3' or request.path == '/compmonth_3' or request.path == '/comprange_3' %} class="active" {% endif %}><a href="{% url 'ques_3' %}">Three Stocks</a></li>
+                <li {% if request.path == '/ques_candle'  or request.path == '/candle' or request.path == '/candle_year' %} class="active" {% endif %}><a href="{% url 'ques_candle' %}">Candle Stick</a></li>
+            </ul>
+        </li>
+
+        <li class="{% if request.path == '/live' %}active{% endif %}"><a href="{% url 'live' %}"><i class="icofont-price">&nbsp;Live Rates</i></a></li>
+        <li class="{% if request.path == '/stnews' %}active{% endif %}"><a href="{% url 'stnews' %}"><i class="icofont-newspaper">&nbsp;Live News</i></a></li>
+        <li class="{% if request.path == '/review' %}active{% endif %}"><a href="{% url 'review' %}"><i class="icofont-star">&nbsp;Review</i></a></li>
+        <li class="{% if request.path == '/help' %}active{% endif %}"><a href="{% url 'help' %}"><i class="icofont-live-support">&nbsp;Help & Support</i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="icofont-logout">&nbsp;Log Out</i></a></li>
+       
+    </ul>
+</nav>
+<div class="container-fluid">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.btn1').click(function(){
+$(this).toggleClass("click");
+$('.sidebar').toggleClass("show");
+});
+
+
+$('.sidebar ul li a').click(function(){
+var id = $(this).attr('id');
+$('nav ul li ul.item-show-'+id).toggleClass("show");
+$('nav ul li #'+id+' span').toggleClass("rotate");
+
+ // Close other dropdowns
+$('nav ul li ul').not('nav ul li ul.item-show-' + id).removeClass("show");
+$('nav ul li a').not('nav ul li #' + id).find('span').removeClass("rotate");
+
+});
+
+$('nav ul li').click(function(){
+$(this).addClass("active").siblings().removeClass("active");
+});
+</script>
+
+</body>
+</html>
