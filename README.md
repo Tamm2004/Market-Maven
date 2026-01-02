@@ -37,7 +37,7 @@ Market Maven includes:
 ---
 
 ## 📁 Project Structure
-
+```
 Market-Maven/
 ├── StockAnalysis/ # Analysis Python scripts (if any)
 ├── templates/ # HTML templates
@@ -47,7 +47,7 @@ Market-Maven/
 ├── db.sqlite3 # Local database
 ├── manage.py # Django management script
 └── ...
-
+```
 
 ---
 
