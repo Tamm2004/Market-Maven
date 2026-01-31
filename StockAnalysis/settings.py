@@ -142,8 +142,8 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER='tamanna20040923@gmail.com'
-EMAIL_HOST_PASSWORD='ixmb cqri cfue dlls'
+EMAIL_HOST_USER='your email-id'
+EMAIL_HOST_PASSWORD='your host password'
 
 
 JAZZMIN_SETTINGS = {
@@ -187,4 +187,5 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     },
     "actions_sticky_top": False
+
 }
