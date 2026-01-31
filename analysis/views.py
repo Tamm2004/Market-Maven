@@ -87,7 +87,7 @@ def reliance(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock "+st					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=10,page=1,sort_by='relevancy')
@@ -175,7 +175,7 @@ def bajaj(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock Bajaj Finance"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -261,7 +261,7 @@ def tata(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock Tata Motors"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -347,7 +347,7 @@ def infy(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock Infosys"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -433,7 +433,7 @@ def itc(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock ITC"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -519,7 +519,7 @@ def sbi(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock SBI Bank"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -605,7 +605,7 @@ def hdfc(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock HDFC Bank"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -691,7 +691,7 @@ def icici(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock ICICI Bank"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -777,7 +777,7 @@ def sun(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock Sun Pharma"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -863,7 +863,7 @@ def tcs(request):
 	graph=fig.to_html()
 					
 	query="latest news for the stock TCS"					
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q=query,language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=12,page=1,sort_by='relevancy')
@@ -911,7 +911,7 @@ def tcs(request):
 def stnews(request):
 	if not request.session.has_key('email'):
 		return redirect('/login')
-	newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+	newsapi=NewsApiClient(api_key='your api key')
 	json_data= newsapi.get_everything(q='Indian Stock Exchange National Stock Exchange',language='en',
 		from_param=str(date.today()-datetime.timedelta(days=29)),
 		to=str(date.today()),page_size=18,page=1,sort_by='relevancy')
@@ -923,7 +923,7 @@ def sentiment(request):
 	if not request.session.has_key('email'):
 		return redirect('/login')
 	if request.method=="POST":
-		newsapi=NewsApiClient(api_key='40f8fa21da67431885edfaec3fa49ac4')
+		newsapi=NewsApiClient(api_key='your api key')
 		st_1= str(request.POST.get('stock'))
 		st="latest news for the stock "+st_1
 		if st_1=="Select the Stock":
@@ -1191,45 +1191,6 @@ def live(request):
 				return render(request, 'live.html', {'msg':msg})
 	else:
 		return render(request,'live.html')
-
-		"""
-		if st=="ITC":
-			
-			data= yf.download(tickers="SBIN.NS", start="1900-01-01", end="2023-12-31")
-			data.to_csv('statics/SBIN.NS.csv')
-			k=data.to_html()
-			f='statics/SBIN.NS.csv'
-		elif st=="TCS":
-			df = pd.read_csv('TCS.csv',parse_dates=['Date'])
-
-
-		elif st=="TATAMOTORS":
-			df = pd.read_csv('TATAMOTORS.csv',parse_dates=['Date'])
-
-		elif st=="SUNPHARMA":
-			df = pd.read_csv('SUNPHARMA.csv',parse_dates=['Date'])
-
-		elif st=="SBIN":
-			df = pd.read_csv('SBIN.csv',parse_dates=['Date'])
-
-		elif st=="INFY":
-			df = pd.read_csv('INFY.csv',parse_dates=['Date'])
-
-		elif st=="ICICIBANK":
-			df = pd.read_csv('ICICIBANK.csv',parse_dates=['Date'])
-
-		elif st=="HDFCBANK":
-			df = pd.read_csv('HDFCBANK.csv',parse_dates=['Date'])
-
-		elif st=="BAJFINANCE":
-			df = pd.read_csv('BAJFINANCE.csv',parse_dates=['Date'])
-
-		else:
-			message="Select one of the stock from the list"
-
-		return render(request,'live.html',{'f':f,'k':k})
-
-		"""
 
 
 def dashboard(request):
@@ -2773,14 +2734,6 @@ def register(request):
 				recipient_list=[email,]
 				send_mail(subject,message,email_from,recipient_list)
 				rest="OTP is sent to your respective email account....Please check"
-				'''
-				x=userregister()
-				x.first_name=request.POST.get('first_name')
-				x.last_name=request.POST.get('last_name')
-				x.email=request.POST.get('email')
-				x.password=request.POST.get('password')
-				x.save()
-				'''
 				return render(request,'otp.html',{'otp':otp,'rest':rest,'first_name':first_name,'last_name':last_name,'email':email,'password':password})
 			else:
 				return render(request,'register.html',{'ms':3})
@@ -2809,32 +2762,6 @@ def otp(request):
     		return render(request,'otp.html',{'msg':message})
     else:
     	return render(request,'otp.html')
-
-        
-
-
-"""
-if request.method=="POST":
-		first_name=request.POST.get('first_name')
-		last_name=request.POST.get('last_name')
-		email=request.POST.get('email')
-		password=request.POST.get('password')
-		confirm_password=request.POST.get('confirm_password')
-		if userregister.objects.filter(email=email).exists():
-			return render(request,'register.html',{'ms':1})
-		if password != confirm_password:
-			return render(request,'register.html',{'ms':3})
-		# Generate OTP
-		user=User.objects.create_user(username=email,email=email)
-		token=default_token_generator.make_token(user)
-		uid=urlsafe_base64_encode(force_bytes(user.pk))
-		subject='Verification OTP'
-		message=f'Your OTP for email verification is: {token}'
-		send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
-		return render(request, 'otp.html', {'email': email})
-	else:
-		return render(request,'register.html')
-"""
 
 def base(request):
 	return render(request,'base.html')
@@ -2949,13 +2876,6 @@ def editprofile(request):
 	    return redirect('/login')   	
 	user=userregister.objects.get(email=request.session['email'])
 	if request.method=="POST":
-		"""
-		if request.method=="POST":
-		print("yes")
-		user.image=request.FILES['image']
-		user.save()
-		return render(request,'userprofile.html',{'user':user,'msg':'success'})
-		"""
 		user.first_name=request.POST.get('first_name')
 		user.last_name=request.POST.get('last_name')
 		user.birthday=request.POST.get('birthday')
@@ -2994,14 +2914,3 @@ def newstock(request):
 		return redirect('/login')
 	else:
 		return render(request,'newstock.html')
-
-
-#40f8fa21da67431885edfaec3fa49ac4
-#EZZ6G5T7V62SXRIX
-"""
-url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=EZZ6G5T7V62SXRIX'
-		r = requests.get(url)
-		data = r.json()
-		print(data)
-
-"""
